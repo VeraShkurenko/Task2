@@ -1,14 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <Windows.h>
+#include <string>
+#include <tchar.h>
 using namespace std;
 
-int main() {
+void Task(_TCHAR* text)
+{
+	_TCHAR vowels[] = {'пїЅ', 'пїЅ', 'пїЅ' , 'пїЅ' , 'пїЅ' , 'пїЅ' , 'пїЅ' , 'пїЅ' , 'пїЅ' , 'пїЅ' };
+	int words = 0;
+	for (int i = 0; i < _tcslen(text); i++)
+	{
+		if ((text[i] != ' ' && text[i + 1] == ' ') || (i == _tcslen(text) - 1 && text[i] != ' '))
+		{
+			for (_TCHAR c : vowels)
+			{
+				if (text[i] == c) words++;
+			}
+		}
+	}
+	cout << "КіпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << words << endl;
+}
+
+void main()
+{
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	char buf[100];
-	cin >> buf;
-	cout << buf << endl;
+	_TCHAR text[100] = _TEXT(""); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	cin.getline(text, 100);
 
-	cout << "Привет, мир!\n";
+	Task(text);
 }
